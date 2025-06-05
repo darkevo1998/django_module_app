@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}Module List{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h2>Available Modules</h2>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Version</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for module in modules %}
+                    <tr>
+                        <td>{{ module.name }}</td>
+                        <td>{{ module.description }}</td>
+                        <td>{{ module.version }}</td>
+                        <td>
+                            {% if module.is_installed %}
+                            <span class="badge bg-success">Installed</span>
+                            {% else %}
+                            <span class="badge bg-secondary">Not Installed</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if module.is_installed %}
+                            <a href="{% url 'module_engine:uninstall_module' module.id %}" class="btn btn-danger btn-sm">Uninstall</a>
+                            <a href="{% url 'module_engine:upgrade_module' module.id %}" class="btn btn-warning btn-sm">Upgrade</a>
+                            {% else %}
+                            <a href="{% url 'module_engine:install_module' module.id %}" class="btn btn-success btn-sm">Install</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5" class="text-center">No modules available.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %} 

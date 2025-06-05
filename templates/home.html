@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Modular Django{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+            <h1 class="display-4 mb-4">Welcome to Modular Django</h1>
+            <p class="lead mb-5">A modular application framework built with Django</p>
+            
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Module Management</h5>
+                            <p class="card-text">Install, upgrade, and manage your application modules.</p>
+                            <a href="{% url 'module_engine:module_list' %}" class="btn btn-primary">Manage Modules</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Product Management</h5>
+                            <p class="card-text">Manage your products with role-based access control.</p>
+                            <a href="{% url 'product_module:product_list' %}" class="btn btn-primary">Manage Products</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
